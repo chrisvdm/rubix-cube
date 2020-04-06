@@ -1,7 +1,48 @@
 .rubix-cube--wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
 
+  // SIDE
+  // =============================================
+  .rubix-cube__side {
+    background-color: #000;
+    border-radius: 5px;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
+    position: absolute;
+  }
+
+  .rubix-cube__side--0 {
+    -webkit-transform: rotateX(45deg);
+    transform: rotate(45deg);
+    left: 235px;
+    top: 70px;
+  }
+
+  .rubix-cube__side--1 {
+    right: 280px;
+    top: 165px;
+    transform: skewY(45deg) scale(0.7);
+  }
+
+  .rubix-cube__side--2 {
+    left: 280px;
+    top: 165px;
+    transform: skewY(-45deg) scale(0.7);
+  }
+
+
+
+  // BLOCK
+  // ============================================
+  .rubix-cube__block {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+  }
 }
-
-.rubix-cube__side {}
-
-.rubix-cube__block {}

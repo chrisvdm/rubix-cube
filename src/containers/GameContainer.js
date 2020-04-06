@@ -23,13 +23,18 @@ class GameContainer extends Component {
 
   render () {
     const { mode } = this.state
+    // return (
+    //   <div className='game-container'>
+    //     {mode === 'start' ? (
+    //       <StartScreen onStartBtnClick={this.onStartBtnClick} />
+    //     ) : (
+    //       <PlayScreen onCancelBtnClick={this.onCancelBtnClick} />
+    //     )}
+    //   </div>
+    // )
     return (
       <div className='game-container'>
-        {mode === 'start' ? (
-          <StartScreen onStartBtnClick={this.onStartBtnClick} />
-        ) : (
-          <PlayScreen onCancelBtnClick={this.onCancelBtnClick} />
-        )}
+        <PlayScreen onCancelBtnClick={this.onCancelBtnClick} />
       </div>
     )
   }
