@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import App from './App.js'
+import { Root } from './containers'
 
 import './styles'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<Root />, document.getElementById('root'))
 
 if (module.hot) {
-  module.hot.accept('./App.js', function () {
-    ReactDOM.render(<App />, document.getElementById('root'))
+  module.hot.accept('./containers/Root.js', function () {
+    ReactDOM.render(<Root />, document.getElementById('root'))
   })
 }
