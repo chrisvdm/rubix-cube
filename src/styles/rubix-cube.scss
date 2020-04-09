@@ -1,48 +1,67 @@
+.rubic-cube__scene {
+  width: 300px;
+  height: 300px;
+  perspective: 900px;
+}
+
 .rubix-cube--wrapper {
   position: relative;
   width: 100%;
   height: 100%;
+  transform-style: preserve-3d;
+  transform: translateZ(-150px);
+  transition: transform 1s;
 
   // SIDE
   // =============================================
   .rubix-cube__side {
+    width: 300px;
+    height: 300px;
+    position: absolute;
     background-color: #000;
     border-radius: 5px;
-    width: 130px;
-    height: 130px;
     display: flex;
     justify-content: space-between;
     align-content: space-between;
     flex-wrap: wrap;
-    position: absolute;
   }
 
-  .rubix-cube__side--0 {
-    -webkit-transform: rotateX(45deg);
-    transform: rotate(45deg);
-    left: 235px;
-    top: 70px;
+
+  .rubix-cube__side--front {
+    transform: rotateY(0deg) translateZ(150px);
   }
 
-  .rubix-cube__side--1 {
-    right: 280px;
-    top: 165px;
-    transform: skewY(45deg) scale(0.7);
+  .rubix-cube__side--right {
+    transform: rotateY(90deg) translateZ(150px);
   }
 
-  .rubix-cube__side--2 {
-    left: 280px;
-    top: 165px;
-    transform: skewY(-45deg) scale(0.7);
+  .rubix-cube__side--back {
+    transform: rotateY(180deg) translateZ(150px);
   }
+
+  .rubix-cube__side--left {
+    transform: rotateY(-90deg) translateZ(150px);
+  }
+
+  .rubix-cube__side--top {
+    transform: rotateX(90deg) translateZ(150px);
+  }
+
+  .rubix-cube__side--bottom {
+    transform: rotateX(-90deg) translateZ(150px);
+  }
+
+
+
 
 
 
   // BLOCK
   // ============================================
   .rubix-cube__block {
-    width: 40px;
-    height: 40px;
+    width: 98px;
+    height: 98px;
     border-radius: 5px;
+    box-shadow: inset -1px -1px 5px rgba(0, 0, 0, 0.37);
   }
 }

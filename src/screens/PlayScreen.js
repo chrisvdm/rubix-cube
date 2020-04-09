@@ -14,30 +14,25 @@ class PlayScreen extends Component {
   }
 
   onRotateLeftBtnClick () {
-    // -1
-    console.log('left')
-    const vs = this.state.visibleSides
-    const hb = vs.slice(1, 3)
-    const newb = hb.map(b => (b - 1 < 1 ? 4 : b - 1))
-
-    const foo = vs.slice(0, 1)
-    const newVS = foo.concat(newb)
-    this.setState({ visibleSides: newVS })
-  }
-
-  onRotateRightBtnClick () {
     // +1
-    console.log('right')
     const vs = this.state.visibleSides
     const hb = vs.slice(1, 3)
     const newb = hb.map(b => (b + 1 > 4 ? 1 : b + 1))
     const foo = vs.slice(0, 1)
     const newVS = foo.concat(newb)
+
     this.setState({ visibleSides: newVS })
-    // [0,1,2]
-    // [0,2,3]
-    // [0,3,4]
-    // [0,4,1]
+  }
+
+  onRotateRightBtnClick () {
+    // -1
+    const vs = this.state.visibleSides
+    const hb = vs.slice(1, 3)
+    const foo = vs.slice(0, 1)
+    const newb = hb.map(b => (b - 1 < 1 ? 4 : b - 1))
+    const newVS = foo.concat(newb)
+
+    this.setState({ visibleSides: newVS })
   }
 
   render () {
@@ -45,7 +40,7 @@ class PlayScreen extends Component {
     const { visibleSides } = this.state
     return (
       <Fragment>
-        <RubixCube visibleSides={visibleSides} />
+        <RubixCube />
         <ViewControl
           onRotateLeftBtnClick={this.onRotateLeftBtnClick}
           onRotateRightBtnClick={this.onRotateRightBtnClick}

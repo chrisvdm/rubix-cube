@@ -69,17 +69,16 @@ class RubixCube extends Component {
 
   render () {
     const { sequences } = this.state
-    const { visibleSides } = this.props
     return (
-      <div className='rubix-cube--wrapper'>
-        {/* Only show 3 sides of the cube which is visible */}
-        {visibleSides.map((side, i) => (
-          <RubixCubeSide
-            key={`rc-side__${side}`}
-            index={i}
-            seq={sequences[side]}
-          />
-        ))}
+      <div className='rubic-cube__scene'>
+        <div className='rubix-cube--wrapper'>
+          <RubixCubeSide position='front' seq={sequences[0]} />
+          <RubixCubeSide position='right' seq={sequences[1]} />
+          <RubixCubeSide position='back' seq={sequences[2]} />
+          <RubixCubeSide position='left' seq={sequences[3]} />
+          <RubixCubeSide position='top' seq={sequences[4]} />
+          <RubixCubeSide position='bottom' seq={sequences[5]} />
+        </div>
       </div>
     )
   }
