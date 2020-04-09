@@ -15,27 +15,37 @@ class PlayScreen extends Component {
   }
 
   onRotateLeftBtnClick () {
-    // +1
-    // const vs = this.state.visibleSides
-    // const hb = vs.slice(1, 3)
-    // const newb = hb.map(b => (b + 1 > 4 ? 1 : b + 1))
-    // const foo = vs.slice(0, 1)
-    // const newVS = foo.concat(newb)
-    //
-    // this.setState({ visibleSides: newVS })
-    console.log('left:', this.cube)
+    const rotations = [
+      'translateZ(-150px) rotateY(90deg)',
+      'translateZ(-150px) rotateY(180deg)',
+      'translateZ(-150px) rotateY(270deg)',
+      'translateZ(-150px) rotateY(0deg)'
+    ]
+
+    const inline = this.cube.current.style.transform
+    const i = rotations.findIndex(r => {
+      return r === inline
+    })
+    const next = i === 3 ? 0 : i + 1
+
+    this.cube.current.style.transform = rotations[next]
   }
 
   onRotateRightBtnClick () {
-    // -1
-    // const vs = this.state.visibleSides
-    // const hb = vs.slice(1, 3)
-    // const foo = vs.slice(0, 1)
-    // const newb = hb.map(b => (b - 1 < 1 ? 4 : b - 1))
-    // const newVS = foo.concat(newb)
-    //
-    // this.setState({ visibleSides: newVS })
-    console.log('right:', this.cube)
+    const rotations = [
+      'translateZ(-150px) rotateY(-90deg)',
+      'translateZ(-150px) rotateY(180deg)',
+      'translateZ(-150px) rotateY(90deg)',
+      'translateZ(-150px) rotateY(0deg)'
+    ]
+
+    const inline = this.cube.current.style.transform
+    const i = rotations.findIndex(r => {
+      return r === inline
+    })
+    const next = i === 3 ? 0 : i + 1
+
+    this.cube.current.style.transform = rotations[next]
   }
 
   render () {
