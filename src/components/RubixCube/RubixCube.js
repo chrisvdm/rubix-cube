@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 import RubixCubeSide from './RubixCubeSide'
 
@@ -65,21 +65,21 @@ class RubixCube extends Component {
         ]
       ]
     }
+
+    this.cube = React.createRef()
   }
 
   render () {
     const { sequences } = this.state
     return (
-      <div className='rubic-cube__scene'>
-        <div className='rubix-cube--wrapper'>
-          <RubixCubeSide position='front' seq={sequences[0]} />
-          <RubixCubeSide position='right' seq={sequences[1]} />
-          <RubixCubeSide position='back' seq={sequences[2]} />
-          <RubixCubeSide position='left' seq={sequences[3]} />
-          <RubixCubeSide position='top' seq={sequences[4]} />
-          <RubixCubeSide position='bottom' seq={sequences[5]} />
-        </div>
-      </div>
+      <Fragment>
+        <RubixCubeSide position='front' seq={sequences[0]} />
+        <RubixCubeSide position='right' seq={sequences[1]} />
+        <RubixCubeSide position='back' seq={sequences[2]} />
+        <RubixCubeSide position='left' seq={sequences[3]} />
+        <RubixCubeSide position='top' seq={sequences[4]} />
+        <RubixCubeSide position='bottom' seq={sequences[5]} />
+      </Fragment>
     )
   }
 }

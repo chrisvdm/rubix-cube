@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 
-import { RubixCube, ViewControl } from '../components'
+import { RubixCube, ViewControl, RubixCubeWrapper } from '../components'
 
 class PlayScreen extends Component {
   constructor (props) {
@@ -11,28 +11,31 @@ class PlayScreen extends Component {
 
     this.onRotateLeftBtnClick = this.onRotateLeftBtnClick.bind(this)
     this.onRotateRightBtnClick = this.onRotateRightBtnClick.bind(this)
+    this.cube = React.createRef()
   }
 
   onRotateLeftBtnClick () {
     // +1
-    const vs = this.state.visibleSides
-    const hb = vs.slice(1, 3)
-    const newb = hb.map(b => (b + 1 > 4 ? 1 : b + 1))
-    const foo = vs.slice(0, 1)
-    const newVS = foo.concat(newb)
-
-    this.setState({ visibleSides: newVS })
+    // const vs = this.state.visibleSides
+    // const hb = vs.slice(1, 3)
+    // const newb = hb.map(b => (b + 1 > 4 ? 1 : b + 1))
+    // const foo = vs.slice(0, 1)
+    // const newVS = foo.concat(newb)
+    //
+    // this.setState({ visibleSides: newVS })
+    console.log('left:', this.cube)
   }
 
   onRotateRightBtnClick () {
     // -1
-    const vs = this.state.visibleSides
-    const hb = vs.slice(1, 3)
-    const foo = vs.slice(0, 1)
-    const newb = hb.map(b => (b - 1 < 1 ? 4 : b - 1))
-    const newVS = foo.concat(newb)
-
-    this.setState({ visibleSides: newVS })
+    // const vs = this.state.visibleSides
+    // const hb = vs.slice(1, 3)
+    // const foo = vs.slice(0, 1)
+    // const newb = hb.map(b => (b - 1 < 1 ? 4 : b - 1))
+    // const newVS = foo.concat(newb)
+    //
+    // this.setState({ visibleSides: newVS })
+    console.log('right:', this.cube)
   }
 
   render () {
@@ -40,7 +43,10 @@ class PlayScreen extends Component {
     const { visibleSides } = this.state
     return (
       <Fragment>
-        <RubixCube />
+        <RubixCubeWrapper ref={this.cube}>
+          <RubixCube />
+        </RubixCubeWrapper>
+
         <ViewControl
           onRotateLeftBtnClick={this.onRotateLeftBtnClick}
           onRotateRightBtnClick={this.onRotateRightBtnClick}
