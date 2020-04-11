@@ -7,7 +7,7 @@ class PlayScreen extends Component {
     super(props)
     this.state = {
       visibleSides: [0, 1, 2],
-      rotation: { y: 45, x: -15 }
+      rotation: { y: 45, x: -15, z: -15 }
     }
 
     this.onRotateLeftBtnClick = this.onRotateLeftBtnClick.bind(this)
@@ -16,32 +16,36 @@ class PlayScreen extends Component {
     this.cube = React.createRef()
   }
 
-  newRotation (dir, rotation, view) {
+  getIndex (rotation, dir, viewArray) {
+    const index = viewArray.findIndex(view => view === rotation)
     if (dir !== 0) {
-      const index = view.findIndex(deg => deg === rotation) + dir
-      if (index === view.length) {
-        return view[0]
-      } else if (index < 0) {
-        return view[view.length - 1]
+      const newIndex = index + dir
+      if (newIndex === viewArray.length) {
+        return 0
+      } else if (newIndex < 0) {
+        return viewArray.length - 1
       } else {
-        return view[index]
+        return newIndex
       }
     }
-    return rotation
+    return index
   }
 
   rotateCube (h, v) {
     const {
-      rotation: { y, x }
+      rotation: { y }
     } = this.state
     const hView = [45, 135, 225, 315]
-    const vView = [-15, 15]
-    const hValue = this.newRotation(h, y, hView)
-    const vValue = this.newRotation(v, x, vView)
-    const template = `translateZ(-400px) rotateY(${hValue}deg) rotateX(${vValue}deg) rotateZ(${vValue}deg)`
+    const vView = [-15, 15, 15, -15]
+    const zView = [-15, -15, 15, 15]
+    const index = this.getIndex(y, h, hView)
+    const hValue = hView[index]
+    const vValue = vView[index]
+    const zValue = zView[index]
+    const template = `translateZ(-400px) rotateY(${hValue}deg) rotateX(${vValue}deg) rotateZ(${zValue}deg)`
 
     this.setState(
-      { rotation: { y: hValue, x: vValue } },
+      { rotation: { y: hValue, x: vValue, z: zValue } },
       () => (this.cube.current.style.transform = template)
     )
   }
@@ -51,11 +55,11 @@ class PlayScreen extends Component {
   }
 
   onRotateLeftBtnClick () {
-    this.rotateCube(1, 0)
+    this.rotateCube(-1, 0)
   }
 
   onRotateRightBtnClick () {
-    this.rotateCube(-1, 0)
+    this.rotateCube(1, 0)
   }
 
   render () {
